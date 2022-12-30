@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FormEventHandler, useState } from 'react'
-import { IFormData } from '../Interfaces'
+import { IFormData } from '../modules/Interfaces'
 
 const RegisterPage = () => {
     const [formData, setFormData] = useState<IFormData>({
