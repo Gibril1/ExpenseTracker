@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import authService from './authService'
-import { IFormData } from '../../modules/Interfaces'
+import { ILoginData } from '../../modules/Interfaces'
 
 
 export interface User {
@@ -27,7 +27,7 @@ const initialState = {
     message: ''
 } as UserState
 
-export const register = createAsyncThunk('auth/register', async(user:IFormData, thunkAPI) => {
+export const register = createAsyncThunk('auth/register', async(user:ILoginData, thunkAPI) => {
     try {
         return await authService.register(user)
     } catch (error:any) {
@@ -36,12 +36,12 @@ export const register = createAsyncThunk('auth/register', async(user:IFormData, 
             error.response.data.message)||
             error.message ||
             error.toString()
-return thunkAPI.rejectWithValue(message)
+        return thunkAPI.rejectWithValue(message)
     }
 
 })
 
-export const login = createAsyncThunk('auth/login', async(user:IFormData, thunkAPI) => {
+export const login = createAsyncThunk('auth/login', async(user:ILoginData, thunkAPI) => {
     try {
         return await authService.login(user)
     } catch (error:any) {
@@ -50,7 +50,7 @@ export const login = createAsyncThunk('auth/login', async(user:IFormData, thunkA
             error.response.data.message)||
             error.message ||
             error.toString()
-return thunkAPI.rejectWithValue(message)
+        return thunkAPI.rejectWithValue(message)
     }
 
 })

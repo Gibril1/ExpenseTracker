@@ -1,9 +1,9 @@
 import axios from "axios";
-import { IFormData } from "../../modules/Interfaces";
+import { ILoginData } from "../../modules/Interfaces";
 
 const API_URL: string = 'http://localhost:5000/api/users/'
 
-const register = async(userData: IFormData)=> {
+const register = async(userData: ILoginData)=> {
     const response = await axios.post(API_URL+'register', userData)
    
     if(response.data){
@@ -12,7 +12,7 @@ const register = async(userData: IFormData)=> {
     
     return response.data
 }
-const login = async(userData: IFormData) => {
+const login = async(userData: ILoginData) => {
     const response = await axios.post(API_URL+'login', userData)
 
     if(response.data){
