@@ -16,6 +16,8 @@ const LoginPage = () => {
         password:''
     })
 
+    const [errorUsername, setErrorUsername] = useState<boolean>(false)
+
     const handleChange = (e: ChangeEvent<HTMLInputElement>):void => {
         setFormData((prevState) => ({
             ...prevState,
@@ -27,10 +29,21 @@ const LoginPage = () => {
 
     const handleSubmit = (e: any)=> {
         e.preventDefault()
+
+        if(username === '' || password === ''){
+            toast.error('Fields cannot be empty')
+            return
+        }
+
+        if(username.length < 6){
+            setErrorUsername(true)
+            setTimeout(():void=>setErrorUsername(false), 2000)
+            return;
+        }
         const userData = {
             username,
             password
-        }
+        } as ILoginData
         dispatch(login(userData)) 
     }
 
@@ -42,7 +55,7 @@ const LoginPage = () => {
             return
         }
 
-        if(isSuccess || user.data !== '{}'){
+        if(isSuccess || user.data !== undefined){
             toast.success('Login successful')
             navigate('/main')
         }
@@ -61,6 +74,8 @@ const LoginPage = () => {
                     name="username" 
                     id="username"
                     onChange={handleChange} />
+                    <small className={`${errorUsername ? 'error': 'success'}`}>Username should not be less than 6 characters</small>
+                
             </div>
             <div className='flex form-group'>
                 <label htmlFor="password">Password</label>

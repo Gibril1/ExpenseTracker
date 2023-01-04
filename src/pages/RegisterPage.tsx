@@ -1,7 +1,7 @@
 import React, { ChangeEvent,  useEffect,  useState } from 'react'
 import { useAppDispatch } from '../app/hooks'
 import { IRegisterData, ILoginData } from '../modules/Interfaces'
-import { register } from '../features/auth/authSlice'
+import { register, reset } from '../features/auth/authSlice'
 import Navbar from '../components/Navbar'
 import '../App.css'
 import { useSelector } from 'react-redux'
@@ -19,6 +19,20 @@ const RegisterPage = () => {
         password:'',
         password2:''
     })
+
+    const { user, isLoading, isError, isSuccess, message } = useSelector((state:any) => state.auth)
+
+    
+
+    useEffect(() => {
+        if(isSuccess || user.data !== undefined){
+            toast.success('Account has been created for you. Congrats!!')
+            navigate('/main') 
+        }
+
+        dispatch(reset())
+    },[isSuccess, user, dispatch, navigate])
+
 
     // error handling for the forms
     const[errorUsername, setErrorUsername] = useState<boolean>(false)
@@ -38,15 +52,19 @@ const RegisterPage = () => {
     // handling form submission
     const handleSubmit = (e: any)=> {
         e.preventDefault()
+        if(username === '' || password === '' || password2 === ''){
+            toast.error('Field cannot be empty')
+            return
+        }
         if(username.length < 6){
             setErrorUsername(true)
-            setTimeout(():void=>setErrorUsername(false), 5000)
+            setTimeout(():void=>setErrorUsername(false), 2000)
             return;
         }
-
+        
         if(password !== password2){
             setErrorPassword(true)
-            setTimeout(():void => setErrorPassword(false), 5000)
+            setTimeout(():void => setErrorPassword(false), 2000)
             return
         }
         
@@ -56,17 +74,13 @@ const RegisterPage = () => {
         }
 
         
+        
         dispatch(register(userData))
     }
 
-    const { user, isLoading, isError, isSuccess, message } = useSelector((state:any) => state.auth)
-
-    useEffect(() => {
-        if(isSuccess || user.data !== '{}'){
-            navigate('/main')
-        }
-    })
-
+    
+    
+    
     if(isError){
         toast.error(message)
     }
@@ -102,10 +116,6 @@ const RegisterPage = () => {
                     onChange={handleChange} />
                     <small className={`${errorPassword ? 'error': 'success'}`}>Your passwords do not match</small>
             </div>
-            <div>
-                <button className='btn btn-primary'>Register</button>
-            </div>
-
             <div>
                 { isLoading ? (
                     <>
