@@ -24,3 +24,14 @@ export interface Expenses {
     category: number,
     description: string
 }
+
+export interface Budget {
+    id: number,
+    user: number,
+    start_date: Date,
+    end_date: Date,
+    amount: number,
+    category: string,
+    status: boolean,
+    remainder: number
+}
