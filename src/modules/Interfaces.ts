@@ -14,3 +14,13 @@ export interface UserData {
     username: string,
     token: string
 }
+
+export interface Expenses {
+    id: number,
+    user: number,
+    budget: number,
+    date: Date,
+    amount: number,
+    category: number,
+    description: string
+}
