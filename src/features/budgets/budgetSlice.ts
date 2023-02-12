@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
-import { IBudgetData, Budget, IBudgetEditData } from "../../modules/Interfaces"
+import { IBudgetData, IBudget, IBudgetEditData } from "../../modules/Interfaces"
 import budgetService from "./budgetService"
 
 
 interface BudgetState {
-    budgets: Budget[],
+    budgets: IBudget[],
     isError: boolean,
     isSuccess: boolean,
     isLoading: boolean,

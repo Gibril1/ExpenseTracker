@@ -26,7 +26,7 @@ export interface Expenses {
 }
 
 // this is the structure of the budget that would be returned from the server
-export interface Budget {
+export interface IBudget {
     id: number,
     user: number,
     start_date: Date,
