@@ -1,9 +1,9 @@
 import axios from "axios";
-import { Budget } from "../../modules/Interfaces";
+import { IBudgetData, IBudgetEditData } from "../../modules/Interfaces";
 
 const API_URL:string = 'http://localhost:5000/api/budget/'
 
-const createBudget = async(budget:Budget, token: string) => {
+const createBudget = async(budget:IBudgetData, token: string) => {
     const config = {
         headers : {
             'x-access-token': `${token}`
@@ -11,7 +11,9 @@ const createBudget = async(budget:Budget, token: string) => {
 
     }
 
-    const response = axios.post(API_URL+'create',budget, config)
+    const response = await axios.post(API_URL+'create',budget, config)
+
+    return response.data
 }
 
 const getBudgets = async(token: string) => {
@@ -23,8 +25,10 @@ const getBudgets = async(token: string) => {
     }
 
     const response = await axios.get(API_URL, config)
+
+    return response.data
 }
-const updateBudget = async(budget:Budget, token: string) => {
+const updateBudget = async(budget:IBudgetEditData, token: string) => {
     const config = {
         headers : {
             'x-access-token': `${token}`

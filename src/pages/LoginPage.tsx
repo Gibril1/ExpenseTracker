@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { useAppDispatch } from '../app/hooks'
-import Navbar from '../components/Navbar'
 import { login } from '../features/auth/authSlice'
 import { ILoginData } from '../modules/Interfaces'
 
@@ -63,10 +62,7 @@ const LoginPage = () => {
 
   return (
     <div>
-        <Navbar/>
         <form onSubmit={handleSubmit} className='formControl flex'>
-            <h1>Login Page</h1>
-
             <div className='flex form-group'>
                 <label htmlFor="username">Username</label>
                 <input 

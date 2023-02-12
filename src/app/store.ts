@@ -1,9 +1,14 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import authReducer from '../features/auth/authSlice'
+// import budgetReducer from '../features/budgets/budgetSlice';
+// import expenseReducer from '../features/expenses/ExpenseSlice';
+
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
+    // budget: budgetReducer,
+    // expense: expenseReducer
   },
 });
 

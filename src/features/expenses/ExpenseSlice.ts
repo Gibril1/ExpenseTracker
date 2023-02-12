@@ -132,8 +132,10 @@ const expenseSlice = createSlice({
             .addCase(updateExpenses.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
-                let job = state.expenses.find((expense) => expense.id === action.payload.id)
-                job = job ? action.payload : null
+                let expense = state.expenses.find((expense) => expense.id === action.payload.id)
+                if(expense){
+                    expense = action.payload
+                }
             })
             .addCase(deleteExpenses.rejected, (state, action) => {
                 state.isLoading = false

@@ -25,6 +25,7 @@ export interface Expenses {
     description: string
 }
 
+// this is the structure of the budget that would be returned from the server
 export interface Budget {
     id: number,
     user: number,
@@ -34,4 +35,19 @@ export interface Budget {
     category: string,
     status: boolean,
     remainder: number
+}
+
+// this is the structure of the budget for creating budgets
+export interface IBudgetData {
+    amount: number,
+    days: number,
+    category: string
+}
+
+// the structure for editing the budget data
+export interface IBudgetEditData {
+    id: number,
+    amount: number,
+    days: number,
+    category: string
 }

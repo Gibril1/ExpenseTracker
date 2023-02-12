@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
-import { Budget } from "../../modules/Interfaces"
+import { IBudgetData, Budget, IBudgetEditData } from "../../modules/Interfaces"
 import budgetService from "./budgetService"
 
 
@@ -20,7 +20,7 @@ const initialState = {
 
 
 // Create Budget
-export const createBudget = createAsyncThunk('budget/create', async(budget:Budget, thunkAPI:any) => {
+export const createBudget = createAsyncThunk('budget/create', async(budget:IBudgetData, thunkAPI:any) => {
     try {
         const token = thunkAPI.getState().auth.user.token
         return await budgetService.createBudget(budget, token)
@@ -52,7 +52,7 @@ export const getBudgets = createAsyncThunk('budgets/get', async(_,thunkAPI:any) 
 
 
 // Update An Budget
-export const updateBudget = createAsyncThunk('budgets/update', async(budget:Budget, thunkAPI:any) => {
+export const updateBudget = createAsyncThunk('budgets/update', async(budget:IBudgetEditData, thunkAPI:any) => {
     try {
         const token = thunkAPI.getState().auth.user.token
         return await budgetService.updateBudget(budget, token)
@@ -131,8 +131,10 @@ const budgetSlice = createSlice({
             .addCase(updateBudget.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
-                let job = state.budgets.find((budget) => budget.id === action.payload.id)
-                job = job ? action.payload : null
+                let budget = state.budgets.find((budget) => budget.id === action.payload.id)
+                if(budget){
+                    budget = action.payload
+                }
             })
             .addCase(deleteBudget.rejected, (state, action) => {
                 state.isLoading = false

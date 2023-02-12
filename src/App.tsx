@@ -3,9 +3,11 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import './App.css'
-import LoginPage from './pages/LoginPage';
 import MainPage from './pages/MainPage';
-import RegisterPage from './pages/RegisterPage';
+import CreateBudget from './components/CreateBudget';
+import Authbar from './components/Authbar';
+
+
 
 function App() {
   return (
@@ -14,9 +16,9 @@ function App() {
       <Router>
         <div className='container'>
           <Routes>
-            <Route  path='' element={<RegisterPage/>}></Route>
-            <Route  path='/login' element={<LoginPage/>}></Route>
+            <Route path='' element={<Authbar/>}></Route>
             <Route path='/main' element={<MainPage/>}></Route>
+            <Route path='/create-budget' element={<CreateBudget/>}></Route>
           </Routes>
         </div>
       </Router>

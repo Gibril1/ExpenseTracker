@@ -2,7 +2,6 @@ import React, { ChangeEvent,  useEffect,  useState } from 'react'
 import { useAppDispatch } from '../app/hooks'
 import { IRegisterData, ILoginData } from '../modules/Interfaces'
 import { register, reset } from '../features/auth/authSlice'
-import Navbar from '../components/Navbar'
 import '../App.css'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -71,25 +70,15 @@ const RegisterPage = () => {
         const userData:ILoginData  = {
             'username':username,
             'password':password
-        }
-
-        
-        
+        }     
         dispatch(register(userData))
     }
-
-    
-    
-    
     if(isError){
         toast.error(message)
     }
   return (
-    <div className='center'>
-        <Navbar/>
-        <form onSubmit={handleSubmit} className='formControl flex'>
-            <h1>Welcome to Register Page</h1>
-
+    <div className='center'>     
+        <form onSubmit={handleSubmit} className='flex'>
             <div className='flex form-group'>
                 <label htmlFor="username">Username</label>
                 <input 
