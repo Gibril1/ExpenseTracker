@@ -3,14 +3,13 @@ import { IBudgetData, IBudgetEditData } from "../../modules/Interfaces";
 
 const API_URL:string = 'http://localhost:5000/api/budget/'
 
-const createBudget = async(budget:IBudgetData, token: string) => {
+const createBudget = async(budget:IBudgetData, token: any) => {
     const config = {
         headers : {
             'x-access-token': token
         }
 
     }
-
     const response = await axios.post(API_URL+'create',budget, config)
 
     return response.data

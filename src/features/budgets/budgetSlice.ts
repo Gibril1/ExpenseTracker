@@ -25,7 +25,7 @@ const initialState = {
 // Create Budget
 export const createBudget = createAsyncThunk('budget/create', async(budget:IBudgetData, thunkAPI:any) => {
     try {
-        const token = thunkAPI.getState().auth.user.token
+        const token = store.getState().auth.user?.token
         return await budgetService.createBudget(budget, token)
     } catch (error: any) {
         const message = (error.response && 

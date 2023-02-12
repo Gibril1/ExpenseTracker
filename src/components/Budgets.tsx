@@ -35,15 +35,13 @@ const Budgets = () => {
   return (
     <div className='flex'>
         <h1 className='poppins-font'>Budgets Drawn</h1>
-        <div>
-            
+        <div className='budgegts flex'>      
             { budgets.length === 0 ? <>
                 <p className='bold'>You have not created any budgets yet. Create One</p>
             </>: budgets.map((budget: IBudget) => (
                 <Budget key = {budget.id} budget={budget}/>
             ))}
-        </div>
-        
+        </div>    
     </div>
   )
 }

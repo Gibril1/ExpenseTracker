@@ -29,11 +29,10 @@ const CreateBudget = () => {
         }
 
         const budgetData = {
-            'amount':amount,
-            'days': days,
-            'category': category
+            amount,
+            days,
+            category
         } as IBudgetData
-
         dispatch(createBudget(budgetData))
     }
   return (
