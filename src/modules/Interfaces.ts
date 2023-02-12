@@ -12,8 +12,9 @@ export interface ILoginData {
 export interface UserData {
     id: number,
     username: string,
-    token: string
+    token: string, 
 }
+
 
 export interface Expenses {
     id: number,

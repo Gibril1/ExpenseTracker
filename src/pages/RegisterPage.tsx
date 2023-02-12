@@ -24,9 +24,9 @@ const RegisterPage = () => {
     
 
     useEffect(() => {
-        if(isSuccess || user.data !== undefined){
-            toast.success('Account has been created for you. Congrats!!')
-            navigate('/main') 
+        if(isSuccess && user.data !== undefined){
+            toast.success(`Account has been created for ${user.data.username}. Congrats!! Please Log In.`)
+            // navigate('/budgets') 
         }
 
         dispatch(reset())

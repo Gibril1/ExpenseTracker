@@ -55,7 +55,7 @@ export const getExpenses = createAsyncThunk('expenses/get', async(id:number, thu
 
 
 // Update An Expense
-export const updateExpenses = createAsyncThunk('expenses/get', async(id:number, thunkAPI:any) => {
+export const updateExpenses = createAsyncThunk('expenses/update', async(id:number, thunkAPI:any) => {
     try {
         const token = thunkAPI.getState().auth.user.token
         return await expenseService.updateExpenses(id, token)
@@ -72,7 +72,7 @@ export const updateExpenses = createAsyncThunk('expenses/get', async(id:number, 
 
 
 // Delete An Expense
-export const deleteExpenses = createAsyncThunk('expenses/get', async(id:number, thunkAPI:any) => {
+export const deleteExpenses = createAsyncThunk('expenses/delete', async(id:number, thunkAPI:any) => {
     try {
         const token = thunkAPI.getState().auth.user.token
         return await expenseService.deleteExpenses(id, token)

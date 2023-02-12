@@ -10,7 +10,7 @@ export interface User {
 }
 
 interface UserState {
-    user: User | string | null
+    user: User |  null
     isError: boolean
     isSuccess: boolean
     isLoading: boolean
@@ -93,6 +93,7 @@ export const authSlice = createSlice({
             .addCase(login.fulfilled, (state, action:PayloadAction<User>) => {
                 state.isLoading = false
                 state.isSuccess = true
+                state.isError = false
                 state.user = action.payload
             })
             .addCase(logout.rejected, (state, action) => {

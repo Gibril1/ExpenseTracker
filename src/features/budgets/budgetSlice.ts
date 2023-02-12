@@ -1,15 +1,18 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
+import { store } from "../../app/store"
 import { IBudgetData, IBudget, IBudgetEditData } from "../../modules/Interfaces"
 import budgetService from "./budgetService"
 
 
-interface BudgetState {
+
+export interface BudgetState {
     budgets: IBudget[],
     isError: boolean,
     isSuccess: boolean,
     isLoading: boolean,
     message: any
 }
+
 const initialState = {
     budgets : [],
     isError: false,
@@ -37,7 +40,7 @@ export const createBudget = createAsyncThunk('budget/create', async(budget:IBudg
 // Get All Budgets
 export const getBudgets = createAsyncThunk('budgets/get', async(_,thunkAPI:any) => {
     try {
-        const token = thunkAPI.getState().auth.user.token
+        const token = store.getState().auth.user?.token
         return await budgetService.getBudgets(token)
     } catch (error:any) {
         const message = (error.response && 
@@ -46,8 +49,9 @@ export const getBudgets = createAsyncThunk('budgets/get', async(_,thunkAPI:any) 
             error.message ||
             error.toString()
         return thunkAPI.rejectWithValue(message)
-        
     }
+        
+    
 })
 
 

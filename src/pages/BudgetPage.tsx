@@ -8,8 +8,7 @@ const BudgetPage = () => {
   
   
   return (
-    <>
-    <div className="grid">
+    <div className="grid-unequal">
       <div>
         <Budgets/>
       </div>
@@ -17,7 +16,6 @@ const BudgetPage = () => {
         <CreateBudget/>
       </div>
     </div>
-    </>
   )
 }
 

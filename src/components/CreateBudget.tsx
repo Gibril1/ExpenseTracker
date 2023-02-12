@@ -38,7 +38,8 @@ const CreateBudget = () => {
     }
   return (
     <>
-    <form onSubmit={handleSubmit} className='flex'>
+    <form onSubmit={handleSubmit} className='flex full-page-height'>
+        <h1 className='poppins-font'>Create Budget</h1>
         <div className="form-group flex">
             <label htmlFor="amount">Amount</label>
             <input 
@@ -60,7 +61,7 @@ const CreateBudget = () => {
         <div className="form-group flex">
             <label htmlFor="category">Category</label>
             <input 
-                type="number" 
+                type="text" 
                 name="category" 
                 id="category"
                 onChange={onChange}

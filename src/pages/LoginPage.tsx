@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { useAppDispatch } from '../app/hooks'
-import { login } from '../features/auth/authSlice'
+import { login, reset } from '../features/auth/authSlice'
 import { ILoginData } from '../modules/Interfaces'
 
 const LoginPage = () => {
@@ -54,11 +54,12 @@ const LoginPage = () => {
             return
         }
 
-        if(isSuccess || user.data !== undefined){
+        if(isSuccess && user !== undefined){
             toast.success('Login successful')
-            navigate('/main')
+            navigate('/budgets')
         }
-    })
+        dispatch(reset())
+    },[isError, isSuccess, user, message, dispatch, navigate])
 
   return (
     <div>
